@@ -8,7 +8,7 @@ class crack extends Controller {
         $getUrl = $this->checkServer();
         $cleanUrl = $this->getCleanUrl($getUrl);
 
-        $routes = include __DIR__ . '/routes.php';
+        $routes = 'app/routes.php';
 
         if (!isset($routes[$cleanUrl])) {
             /**
@@ -20,7 +20,6 @@ class crack extends Controller {
                 /**
                  * custom not found page
                  */
-//                include __DIR__ . '/views/notFound.php';
             } else {
                 return $this->getFunctionality($routes[$cleanUrl], $params);
             }
@@ -263,5 +262,5 @@ function asset($path) {
 }
 
 function assetRoot($path) {
-    return __DIR__ . '/../assets/' . $path;
+    return 'app/assets/' . $path;
 }

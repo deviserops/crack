@@ -8,7 +8,7 @@ class Controller {
         if (count($params)) {
             extract($params);
         }
-        include __DIR__ . '/../views/' . $viewName . '.php';
+        include 'app/views/' . $viewName . '.php';
     }
 
 }
