@@ -8,7 +8,7 @@ class crack extends Controller {
         $getUrl = $this->checkServer();
         $cleanUrl = $this->getCleanUrl($getUrl);
 
-        $routes = 'app/routes.php';
+        $routes = include 'app/routes.php';
 
         if (!isset($routes[$cleanUrl])) {
             /**
