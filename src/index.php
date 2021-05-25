@@ -260,9 +260,9 @@ class crack extends Controller {
  * Loading assets
  */
 function asset($path) {
-    return $_SERVER['SERVER_NAME'] . '/app/assets/' . $path;
+    return $_SERVER['SERVER_NAME'] . '/assets/' . $path;
 }
 
 function assetRoot($path) {
-    return 'app/assets/' . $path;
+    return 'assets/' . $path;
 }
