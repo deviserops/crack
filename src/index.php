@@ -49,10 +49,12 @@ class crack extends Controller {
         $url = explode('?', $url);
         $onlyUrl = $url[0];
         $urlArray = str_split($onlyUrl);
-        if (end($urlArray) == '/') {
-            $keys = count($urlArray) - 1;
-            unset($urlArray[$keys]);
-        }
+
+        /** If remove last url then the default index function will never call from controller **/
+//        if (end($urlArray) == '/') {
+//            $keys = count($urlArray) - 1;
+//            unset($urlArray[$keys]);
+//        }
         $cleanUrl = implode('', $urlArray);
         return $cleanUrl;
         /**
