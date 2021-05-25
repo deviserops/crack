@@ -255,9 +255,6 @@ class crack extends Controller {
 
 }
 
-$obj = new crack();
-echo $obj->run();
-
 /**
  * Loading assets
  */
