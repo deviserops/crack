@@ -2,6 +2,7 @@
     "name": "hgphpdev/crack",
     "description": "Core Php based framework(Core)",
     "type": "project",
+    "license": "MIT",
     "authors": [
         {
             "name": "HGPHPDEV",
