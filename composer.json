@@ -1,0 +1,20 @@
+{
+    "name": "framework/crack",
+    "description": "Core Php based framework(Core)",
+    "type": "project",
+    "authors": [
+        {
+            "name": "HGPHPDEV",
+            "email": "hgphpdev@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "src\\": "src/"
+        },
+        "classmap": [
+            "src/"
+        ]
+    },
+    "require": {}
+}
