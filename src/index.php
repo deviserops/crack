@@ -4,6 +4,9 @@ use src\controller\Controller;
 
 class crack extends Controller {
 
+    public static $projectName = '';
+    public static $assetDir = '/assets/';
+
     public function run() {
         $getUrl = $this->checkServer();
         $cleanUrl = $this->getCleanUrl($getUrl);
@@ -96,6 +99,9 @@ class crack extends Controller {
             unset($projectNameArray[$keys]);
         }
         $project = implode('', $projectNameArray);
+
+        /** Set Project Name globally for path use **/
+        self::$projectName = $project;
 
         $requestUri = $_SERVER['REQUEST_URI'];          //      /php/home
         $finalUrl = str_replace($project, '', $requestUri);
@@ -254,15 +260,12 @@ class crack extends Controller {
         return [$routes, $params];
     }
 
-}
+    public static function asset($path = '') {
+        return $_SERVER['REQUEST_SCHEME'] . '://' . rtrim($_SERVER['SERVER_NAME'], '/') . self::$projectName . self::$assetDir . ltrim($path, '/');
+    }
 
-/**
- * Loading assets
- */
-function asset($path) {
-    return $_SERVER['SERVER_NAME'] . '/assets/' . $path;
-}
+    public static function assetRoot($path = '') {
+        return rtrim($_SERVER['DOCUMENT_ROOT'], '/') . self::$projectName . self::$assetDir . ltrim($path, '/');
+    }
 
-function assetRoot($path) {
-    return 'assets/' . $path;
 }
