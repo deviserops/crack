@@ -66,46 +66,13 @@ class crack extends Controller {
     }
 
     public function checkServer() {
-        /**
-         * /var/www/html/php/index.php          remove index.php
-         **/
-        $fullScriptPath = $_SERVER['SCRIPT_FILENAME'];
-        $scriptPathArray = explode('index.php', $fullScriptPath);
-        $scriptPath = array_filter($scriptPathArray);
-        $scriptName = implode('', $scriptPath);
-        /**
-         * $scriptName = /var/www/html/php/
-         **/
-
-        /**
-         * remove DOCUMENT_ROOT
-         *  /var/www/html/php/              /var/www/html
-         **/
-        $scriptPathArray = explode($_SERVER['DOCUMENT_ROOT'], $scriptName);
-        $scriptPath = array_filter($scriptPathArray);
-        $projectName = implode('', $scriptPath);
-        /**
-         * for virtual host it is  '' , for localhost is is '/php/'
-         **/
-        /**
-         * $projectName = /php/
-         **/
-        /**
-         * Remove End slash from projectName = /php/ -> /php
-         **/
-        $projectNameArray = str_split($projectName);
-        if (end($projectNameArray) == '/') {
-            $keys = count($projectNameArray) - 1;
-            unset($projectNameArray[$keys]);
-        }
-        $project = implode('', $projectNameArray);
-
+        $project = rtrim(str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']), '/');
         /** Set Project Name globally for path use **/
         self::$projectName = $project;
 
         $requestUri = $_SERVER['REQUEST_URI'];          //      /php/home
-        $finalUrl = str_replace($project, '', $requestUri);
-        return $finalUrl;
+        return str_replace($project, '', $requestUri);
+
     }
 
     private function getUpdateRoutes($routes, $getCleanUrl) {
